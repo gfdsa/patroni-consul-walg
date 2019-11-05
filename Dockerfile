@@ -36,7 +36,7 @@ RUN mkdir -p /var/run/postgresql && chown -R postgres /var/run/postgresql
 
 RUN apt-get install --no-install-recommends -y libpq-dev postgresql-client-$PG_MAJOR
 
-RUN apt-get update && apt-get install -y htop vim iftop iotop iperf net-tools iputils-ping python-pip postgresql-server-dev-$PG_MAJOR git
+RUN apt-get update -y && apt-get install -y htop vim iftop iotop iperf net-tools iputils-ping python-pip postgresql-server-dev-$PG_MAJOR git
 
 RUN pip install psutil patroni[consul] python-consul dnspython boto mock requests six kazoo click tzlocal prettytable PyYAML
 
