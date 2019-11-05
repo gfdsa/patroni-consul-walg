@@ -12,7 +12,7 @@ RUN gpg --keyserver pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4
 
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 RUN apt-get update
-RUN apt-get upgrade -y
+RUN apt-get upgrade -o Dpkg::Options::="--force-confold" --force-yes -y
 
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 
@@ -36,7 +36,7 @@ RUN mkdir -p /var/run/postgresql && chown -R postgres /var/run/postgresql
 
 RUN apt-get install --no-install-recommends -y libpq-dev postgresql-client-$PG_MAJOR
 
-RUN apt-get update -o Dpkg::Options::="--force-confold" --force-yes -y && apt-get install -y htop vim iftop iotop iperf net-tools iputils-ping python-pip postgresql-server-dev-$PG_MAJOR git
+RUN apt-get update && apt-get install -y htop vim iftop iotop iperf net-tools iputils-ping python-pip postgresql-server-dev-$PG_MAJOR git
 
 RUN pip install psutil patroni[consul] python-consul dnspython boto mock requests six kazoo click tzlocal prettytable PyYAML
 
