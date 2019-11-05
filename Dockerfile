@@ -38,7 +38,7 @@ RUN apt-get install --no-install-recommends -y libpq-dev postgresql-client-$PG_M
 
 RUN apt-get update && apt-get install -y htop vim iftop iotop iperf net-tools iputils-ping python-pip postgresql-server-dev-$PG_MAJOR git
 
-RUN pip install psutil patroni[consul] python-consul dnspython boto mock requests six kazoo click tzlocal prettytable PyYAML
+RUN pip install psycopg2 psutil patroni[consul] python-consul dnspython boto mock requests six kazoo click tzlocal prettytable PyYAML
 
 #wal-g staff
 RUN wget https://github.com/wal-g/wal-g/releases/download/v0.1.15/wal-g.linux-amd64.tar.gz && tar -zxvf wal-g.linux-amd64.tar.gz && mv wal-g /usr/bin && chmod +x /usr/bin/wal-g && rm wal-g.linux-amd64.tar.gz
